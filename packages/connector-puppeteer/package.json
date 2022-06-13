@@ -88,7 +88,7 @@
     "lint:dependencies": "node ../../scripts/lint-dependencies.js",
     "lint:md": "node ../../scripts/lint-markdown.js",
     "test": "npm run lint && npm run build && npm run test-only",
-    "test-only": "nyc ava",
+    "test-only": "nyc ava -- --debug",
     "test-release": "npm run lint && npm run build-release && ava",
     "watch": "npm run build && npm-run-all --parallel -c watch:*",
     "watch:ts": "npm run build:ts -- --watch"
