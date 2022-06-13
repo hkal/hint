@@ -11,7 +11,7 @@ import { validEvent } from './_valid-event';
 
 const name = 'puppeteer';
 
-test(`[${name}] Form authentication on a page works`, async (t) => {
+test.serial(`[${name}] Form authentication on a page works`, async (t) => {
     const user = 'user';
     const password = 'password';
 
@@ -91,7 +91,7 @@ test(`[${name}] Form authentication on a page works`, async (t) => {
 });
 
 
-test(`[${name}] Authenticate on a multi-step page works`, async (t) => {
+test.serial(`[${name}] Authenticate on a multi-step page works`, async (t) => {
     const user = 'user';
     const password = 'password';
 
@@ -179,7 +179,7 @@ test(`[${name}] Authenticate on a multi-step page works`, async (t) => {
     await Promise.all([connector.close(), server.stop()]);
 });
 
-test(`[${name}] Basic HTTP Authentication works`, async (t) => {
+test.serial(`[${name}] Basic HTTP Authentication works`, async (t) => {
     const user = 'user';
     const password = 'password';
 

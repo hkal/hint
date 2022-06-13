@@ -7,7 +7,7 @@ import Connector from '../src/connector';
 
 const name = 'puppeteer';
 
-test(`[${name}] Connector throws an exception if action is not found`, (t) => {
+test.serial(`[${name}] Connector throws an exception if action is not found`, (t) => {
 
     t.plan(1);
 
@@ -38,7 +38,7 @@ test(`[${name}] Connector throws an exception if action is not found`, (t) => {
     }
 });
 
-test(`[${name}] Connector loads an action and throws if it does not have the right signature`, (t) => {
+test.serial(`[${name}] Connector loads an action and throws if it does not have the right signature`, (t) => {
 
     t.plan(1);
 
@@ -76,7 +76,7 @@ test(`[${name}] Connector loads an action and throws if it does not have the rig
 });
 
 
-test(`[${name}] Connector loads an action and doesn't throw if it has the right signature`, (t) => {
+test.serial(`[${name}] Connector loads an action and doesn't throw if it has the right signature`, (t) => {
 
     t.plan(0);
 

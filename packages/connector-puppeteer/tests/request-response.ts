@@ -32,7 +32,7 @@ const findEvent = (func: sinon.SinonSpy<any, any>, eventName: string) => {
     return null;
 };
 
-test(`[${name}] requestResponse`, async (t) => {
+test.serial(`[${name}] requestResponse`, async (t) => {
     const sourceHtml = fs.readFileSync(path.join(__dirname, './fixtures/common/index.html'), 'utf8');
 
     const engine: Engine<Events> = {

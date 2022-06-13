@@ -8,7 +8,7 @@ import Connector from '../src/connector';
 
 const name = 'puppeteer';
 
-test(`[${name}] Load an invalid url throws an error`, async (t) => {
+test.serial(`[${name}] Load an invalid url throws an error`, async (t) => {
     const engine: Engine<Events> = {
         emit(): boolean {
             return false;

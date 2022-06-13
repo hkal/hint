@@ -12,7 +12,7 @@ import Connector from '../src/connector';
 
 const name = 'puppeteer';
 
-test(`[${name}] Fetch Content`, async (t) => {
+test.serial(`[${name}] Fetch Content`, async (t) => {
     const engine: Engine<Events> = {
         emit(): boolean {
             return false;

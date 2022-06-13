@@ -178,7 +178,7 @@ test.afterEach.always((t) => {
     t.context.engineEmitSpy.restore();
 });
 
-test(`[${name}] Events`, async (t) => {
+test.serial(`[${name}] Events`, async (t) => {
     const { engine } = t.context;
     const connector: IConnector = new Connector(engine, { detached: true });
 

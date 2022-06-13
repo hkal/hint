@@ -1,5 +1,6 @@
 {
   "ava": {
+    "concurrency": 1,
     "failFast": false,
     "files": [
       "dist/tests/**/*.js",

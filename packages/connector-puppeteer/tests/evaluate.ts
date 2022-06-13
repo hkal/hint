@@ -45,7 +45,7 @@ const scripts = [
     }
 ];
 
-test(`[${name}] Evaluate JavaScript`, async (t) => {
+test.serial(`[${name}] Evaluate JavaScript`, async (t) => {
     const engine: Engine<Events> = {
         emit(): boolean {
             return false;

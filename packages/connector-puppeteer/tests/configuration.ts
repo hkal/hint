@@ -57,7 +57,7 @@ test.afterEach.always((t) => {
     t.context.sandbox.restore();
 });
 
-test(`"detached" sets some options to "false" and is passed down`, async (t) => {
+test.serial(`"detached" sets some options to "false" and is passed down`, async (t) => {
     const { engine, launch, PuppeteerConnector } = mockContext(t.context);
     const connector = new PuppeteerConnector(engine, { detached: true });
 
@@ -76,7 +76,7 @@ test(`"detached" sets some options to "false" and is passed down`, async (t) => 
     t.true(options.detached);
 });
 
-test(`"ignoreHTTPSErrors" adds "args" with the right value`, async (t) => {
+test.serial(`"ignoreHTTPSErrors" adds "args" with the right value`, async (t) => {
     const { engine, launch, PuppeteerConnector } = mockContext(t.context);
     const connector = new PuppeteerConnector(engine, { ignoreHTTPSErrors: true });
 
@@ -93,7 +93,7 @@ test(`"ignoreHTTPSErrors" adds "args" with the right value`, async (t) => {
     t.true((options.args as string[]).includes('--enable-features=NetworkService'));
 });
 
-test(`"puppeteerOptions" has higher priority than other properties`, async (t) => {
+test.serial(`"puppeteerOptions" has higher priority than other properties`, async (t) => {
     const { engine, launch, PuppeteerConnector } = mockContext(t.context);
     const userOptions = {
         headless: false,

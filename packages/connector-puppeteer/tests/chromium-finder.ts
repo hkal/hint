@@ -63,7 +63,7 @@ test.afterEach.always((t) => {
     t.context.sandbox.restore();
 });
 
-test('WEBHINT_CHROMIUM_PATH has higher priority than CHROMIUM_PATH', (t) => {
+test.serial('WEBHINT_CHROMIUM_PATH has higher priority than CHROMIUM_PATH', (t) => {
     const sandbox = t.context.sandbox;
 
     const webhintChromiumPath = 'webhint';
@@ -86,7 +86,7 @@ test('WEBHINT_CHROMIUM_PATH has higher priority than CHROMIUM_PATH', (t) => {
     t.is(foundedPath, webhintChromiumPath, `WEBHINT_CHROMIUM_PATH doesn't have higher priority thatn CHROMIUM_PATH`);
 });
 
-test('Custom path has higher priority than other variables', (t) => {
+test.serial('Custom path has higher priority than other variables', (t) => {
     const sandbox = t.context.sandbox;
 
     const customPath = 'custom';
@@ -110,7 +110,7 @@ test('Custom path has higher priority than other variables', (t) => {
     t.is(foundedPath, customPath, `WEBHINT_CHROMIUM_PATH doesn't have higher priority thatn CHROMIUM_PATH`);
 });
 
-test(`Invalid custom path throws an exception`, (t) => {
+test.serial(`Invalid custom path throws an exception`, (t) => {
     const sandbox = t.context.sandbox;
 
     sandbox.stub(t.context.isFile, 'isFile')
@@ -126,7 +126,7 @@ test(`Invalid custom path throws an exception`, (t) => {
     t.is(error?.message, 'The provided path is not accessible: "invalid"', `Error message is not the expected one`);
 });
 
-test(`Searches with the right priorities and throws an exception when nothing is found`, (t) => {
+test.serial(`Searches with the right priorities and throws an exception when nothing is found`, (t) => {
     const sandbox = t.context.sandbox;
     const platform = 'win32';
 
@@ -167,7 +167,7 @@ test(`Searches with the right priorities and throws an exception when nothing is
     }
 });
 
-test(`Falls back to using puppeteer when available`, (t) => {
+test.serial(`Falls back to using puppeteer when available`, (t) => {
     const sandbox = t.context.sandbox;
 
     sandbox.stub(t.context, 'puppeteer').get(() => {
@@ -183,7 +183,7 @@ test(`Falls back to using puppeteer when available`, (t) => {
     t.is(chromiumFinder.getInstallationPath(), 'path/to/puppeteer/chrome');
 });
 
-test(`(Linux) Does not have any information for Edge`, (t) => {
+test.serial(`(Linux) Does not have any information for Edge`, (t) => {
     const sandbox = t.context.sandbox;
 
     sandbox.stub(t.context.utils, 'getPlatform')
@@ -198,7 +198,7 @@ test(`(Linux) Does not have any information for Edge`, (t) => {
     t.is(error?.message, 'The provided browser ("Edge") is not supported in this platform');
 });
 
-test(`Unsupported platform throws an Error`, (t) => {
+test.serial(`Unsupported platform throws an Error`, (t) => {
     const sandbox = t.context.sandbox;
     const platform = 'unsupported';
 
@@ -214,7 +214,7 @@ test(`Unsupported platform throws an Error`, (t) => {
     t.is(error?.message, `Unsupported platform: "unsupported"`);
 });
 
-test(`No installation found throws an Error`, (t) => {
+test.serial(`No installation found throws an Error`, (t) => {
     const chromiumFinder = loadDependency(t.context);
 
     const error = t.throws(() => {

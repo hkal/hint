@@ -58,7 +58,7 @@ const runTest = async (t: ExecutionContext<CollectContext>, Connector: IConnecto
     return server;
 };
 
-test(`[${name}] The HTML is downloaded and the right event emitted`, async (t) => {
+test.serial(`[${name}] The HTML is downloaded and the right event emitted`, async (t) => {
     const serverConfig: ServerConfiguration = { '/': generateHTMLPage(`<title>Test</title>`) };
 
     await runTest(t, ChromeConnector, serverConfig);
@@ -66,7 +66,7 @@ test(`[${name}] The HTML is downloaded and the right event emitted`, async (t) =
     t.is(t.context.engineEmitAsyncSpy.withArgs('fetch::end::html').callCount, 1);
 });
 
-test(`[${name}] Favicon is present in a 'link' element with 'rel' attribute set to 'icon' `, async (t) => {
+test.serial(`[${name}] Favicon is present in a 'link' element with 'rel' attribute set to 'icon' `, async (t) => {
     const faviconInLinkElementDir = `http://localhost/images/favicon-32x32.png`;
     const serverConfig: ServerConfiguration = {
         '/': generateHTMLPage(`<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">`),
@@ -80,7 +80,7 @@ test(`[${name}] Favicon is present in a 'link' element with 'rel' attribute set 
 
 });
 
-test(`[${name}] Favicon is present in the root directory`, async (t) => {
+test.serial(`[${name}] Favicon is present in the root directory`, async (t) => {
     const faviconInRootDir = `http://localhost/favicon.ico`;
     const serverConfig: ServerConfiguration = {
         '/': generateHTMLPage(),
@@ -93,7 +93,7 @@ test(`[${name}] Favicon is present in the root directory`, async (t) => {
     t.is(t.context.engineEmitAsyncSpy.withArgs('fetch::end::image').args[0][1].request.url, Server.updateLocalhost(faviconInRootDir, server.port));
 });
 
-test(`[${name}] Favicon is present in both the root directory and the 'link' element`, async (t) => {
+test.serial(`[${name}] Favicon is present in both the root directory and the 'link' element`, async (t) => {
     const faviconInLinkElementDir = `http://localhost/images/favicon-32x32.png`;
     const serverConfig: ServerConfiguration = {
         '/': generateHTMLPage(`<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">`),
@@ -108,7 +108,7 @@ test(`[${name}] Favicon is present in both the root directory and the 'link' ele
     t.is(t.context.engineEmitAsyncSpy.withArgs('fetch::end::image').args[0][1].request.url, Server.updateLocalhost(faviconInLinkElementDir, server.port));
 });
 
-test(`[${name}] Favicon is present in both the root directory and the 'link' element, but the 'link' element has empty 'href'`, async (t) => {
+test.serial(`[${name}] Favicon is present in both the root directory and the 'link' element, but the 'link' element has empty 'href'`, async (t) => {
     const faviconInRootDir = `http://localhost/favicon.ico`;
     const serverConfig: ServerConfiguration = {
         '/': generateHTMLPage(`<link rel="icon" type="image/png" href="" sizes="32x32">`),
@@ -122,7 +122,7 @@ test(`[${name}] Favicon is present in both the root directory and the 'link' ele
     t.is(t.context.engineEmitAsyncSpy.withArgs('fetch::end::image').args[0][1].request.url, Server.updateLocalhost(faviconInRootDir, server.port));
 });
 
-test(`[${name}] Favicon is not present in either the root directory or the 'link' element`, async (t) => {
+test.serial(`[${name}] Favicon is not present in either the root directory or the 'link' element`, async (t) => {
     const faviconInRootDir = `http://localhost/favicon.ico`;
     const serverConfig: ServerConfiguration = { '/': generateHTMLPage() };
 
