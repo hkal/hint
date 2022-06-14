@@ -3,7 +3,7 @@
     "concurrency": 1,
     "failFast": false,
     "files": [
-      "dist/tests/**/*.js",
+      "dist/tests/**/collect.js",
       "!dist/tests/**/fixtures/**/*.js"
     ],
     "timeout": "1m",
